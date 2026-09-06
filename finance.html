@@ -1,0 +1,164 @@
+<div class="page-content finance-page">
+  <div class="page-hero">
+    <div class="hero-icon">📊</div>
+    <div>
+      <div class="page-title">財務目標缺口規劃</div>
+      <p class="page-desc">
+        依序完成三個區塊：① 算出目標需求（want）② 盤點既有資產（have）③ 得出缺口（need，
+        也就是一次性投入需要的金額），填投資報酬率可換算成每月定期定額要存多少。
+        所有目標金額最後都會換算回「現在」的現值，才能跨目標互相比較。
+      </p>
+    </div>
+  </div>
+
+  <!-- ══ 基本參數 ══ -->
+  <div class="detail-section-label">基本參數</div>
+  <div class="fin-params-card">
+    <div class="fin-params-grid">
+      <div class="input-group">
+        <label>目前年齡（歲）</label>
+        <input type="number" id="fin-current-age" min="0" max="100" value="23" oninput="onGlobalParamChange()" />
+      </div>
+      <div class="input-group">
+        <label>通貨膨脹率（%）<span class="tip">年化，可於各目標覆寫</span></label>
+        <input type="number" id="fin-default-inflation" min="0" max="20" step="0.1" value="2" oninput="onGlobalParamChange()" />
+      </div>
+      <div class="input-group">
+        <label>投資報酬率（%）<span class="tip">用於換算第一區塊目標需求，可於各目標覆寫</span></label>
+        <input type="number" id="fin-default-return" min="0" max="30" step="0.1" value="5" oninput="onGlobalParamChange()" />
+      </div>
+      <div class="input-group">
+        <label>月收入（元）<span class="tip">參考用，選填</span></label>
+        <input type="number" id="fin-income" min="0" value="65000" oninput="onGlobalParamChange()" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- 第一區塊：目標需求 want -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="fin-block">
+    <div class="fin-block-header">
+      <div class="fin-block-num">1</div>
+      <div>
+        <div class="fin-block-title">目標需求（want）</div>
+        <div class="fin-block-desc">列出人生目標，換算通貨膨脹與報酬率後，得出目前這個時間點的現值</div>
+      </div>
+    </div>
+
+    <div class="goal-list" id="goal-want-list"></div>
+    <button class="add-goal-btn" onclick="addGoal()">＋ 新增目標</button>
+
+    <div class="asset-summary">
+      <div class="asset-summary-item">
+        <span>總需求（want）<span class="tip">所有目標換算回現在年齡的現值加總</span></span>
+        <strong id="want-sum-total">—</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- 第二區塊：既有資產 have -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="fin-block">
+    <div class="fin-block-header">
+      <div class="fin-block-num">2</div>
+      <div>
+        <div class="fin-block-title">既有資產（have）</div>
+        <div class="fin-block-desc">列出股票、基金、定存、保單等資產，自動算出總資產</div>
+      </div>
+    </div>
+
+    <div class="asset-list" id="asset-list"></div>
+    <button class="add-goal-btn" onclick="addAsset()">＋ 新增資產</button>
+
+    <div class="asset-summary">
+      <div class="asset-summary-item">
+        <span>總資產（have）</span>
+        <strong id="asset-total">—</strong>
+      </div>
+    </div>
+    <div class="fin-asset-note" id="fin-asset-note"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- 第三區塊：缺口與達成 need -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="fin-block">
+    <div class="fin-block-header">
+      <div class="fin-block-num">3</div>
+      <div>
+        <div class="fin-block-title">缺口與達成（need）</div>
+        <div class="fin-block-desc">want 扣掉已分配的既有資產＝need（也就是一次性投入需要的金額）；填投資報酬率，可算出改用每月定期定額要存多少</div>
+      </div>
+    </div>
+
+    <!-- 總覽卡片 -->
+    <div class="cards-grid cards-grid-1">
+      <div class="info-card accent-yellow">
+        <div class="card-label">總缺口（need，現值）</div>
+        <div class="card-value" id="fin-sum-need">—</div>
+        <div class="card-sub">所有目標缺口加總</div>
+      </div>
+    </div>
+
+    <!-- ── 方案切換 ── -->
+    <div class="plan-toggle">
+      <button class="plan-toggle-btn active" id="plan-toggle-A" onclick="setSelectedPlan('A')">
+        ✅ 採用方案 A：一起達成
+      </button>
+      <button class="plan-toggle-btn" id="plan-toggle-B" onclick="setSelectedPlan('B')">
+        採用方案 B：分開達成
+      </button>
+    </div>
+    <div class="plan-toggle-note">選擇哪個方案，下方「下載逐年試算表」就會用哪個方案的存款計畫來產生 Excel。</div>
+
+    <!-- ── 一起達成：所有目標共用同一筆資金池 ── -->
+    <div class="fin-subsection" id="plan-section-A">
+      <div class="fin-subsection-title">方案 A：一起達成（所有目標共用一筆資金池）</div>
+      <div class="fin-subsection-desc">
+        既有資產會依到期時間先後，扣抵最近的目標。填一個投資報酬率，算出若把所有目標的缺口
+        全部用「每月定期定額」方式補足，需要多少錢；一次性投入需要多少，直接看上方的「總缺口（need，現值）」即可。
+      </div>
+      <div class="pool-input-row">
+        <div class="input-group">
+          <label>總體投資報酬率（%）</label>
+          <input type="number" id="pool-rate" step="0.1" value="5" oninput="onPoolInputChange()" />
+        </div>
+      </div>
+      <div class="goal-result">
+        <div class="goal-result-item highlight">
+          <span>全部目標每月定期定額合計需要多少</span>
+          <strong id="pool-required-monthly">—</strong>
+        </div>
+      </div>
+      <div class="goal-outcome" id="pool-outcome"></div>
+    </div>
+
+    <!-- ── 分開達成：每個目標各自計算 ── -->
+    <div class="fin-subsection" id="plan-section-B" hidden>
+      <div class="fin-subsection-title">方案 B：分開達成（每個目標各自計算）</div>
+      <div class="fin-subsection-desc">
+        每個目標可以各自填投資報酬率，只用來算出補足這個目標自己缺口所需要的每月存入金額；
+        一次性投入需要多少，就是這個目標自己的「缺口（need，現值）」。
+      </div>
+      <div class="goal-list" id="goal-need-list"></div>
+    </div>
+  </div>
+
+  <!-- ══ 時間軸 ══ -->
+  <div class="finance-timeline" style="margin-top: 28px">
+    <div class="timeline-title">人生財務里程碑</div>
+    <div id="fin-timeline-list"></div>
+  </div>
+
+  <!-- ══ 逐年試算表下載 ══ -->
+  <div class="fin-export-row">
+    <div class="fin-export-desc">
+      下載整份人生財務計畫的逐年試算表：每年存入多少、每年花多少、每年成長多少、年末總餘額多少一目瞭然。
+      會依照第三區塊目前選擇的方案（<span id="fin-export-plan-label">方案 A</span>）來產生存款計畫。
+    </div>
+    <button class="export-btn" onclick="exportFinancePlanToExcel()">📥 下載逐年試算表（Excel）</button>
+  </div>
+</div>
+<!-- /page-content -->

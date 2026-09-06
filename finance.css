@@ -1,0 +1,560 @@
+/* =============================================
+   finance.css — 財務目標缺口規劃頁面樣式
+   ============================================= */
+
+.finance-page .page-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.finance-page .cards-grid .card-value {
+  font-size: 22px;
+  font-family: 'DM Mono', monospace;
+}
+
+.finance-page .cards-grid-1 {
+  grid-template-columns: minmax(0, 320px);
+}
+
+/* ===== 方案切換（一起達成 / 分開達成） ===== */
+.plan-toggle {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.plan-toggle-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.plan-toggle-btn:hover {
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+
+.plan-toggle-btn.active {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  color: #fff;
+}
+
+.plan-toggle-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+/* ===== 基本參數卡片 ===== */
+.fin-params-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  margin-bottom: 28px;
+}
+
+.fin-params-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.fin-params-grid .input-group label,
+.goal-card .input-group label,
+.asset-row .input-group label,
+.pool-input-row .input-group label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.fin-params-grid .input-group input,
+.goal-card .input-group input,
+.asset-row .input-group input,
+.pool-input-row .input-group input {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: 'DM Mono', monospace;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.fin-params-grid .input-group input:focus,
+.goal-card .input-group input:focus,
+.asset-row .input-group input:focus,
+.pool-input-row .input-group input:focus {
+  outline: none;
+  border-color: var(--accent2);
+}
+
+.tip {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* ===== 三大區塊 ===== */
+.fin-block {
+  margin-bottom: 32px;
+}
+
+.fin-block-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.fin-block-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent2);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'DM Mono', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fin-block-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.fin-block-desc {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.fin-block .cards-grid {
+  margin-bottom: 20px;
+}
+
+.fin-block .gap-bar-section {
+  margin-bottom: 24px;
+}
+
+/* ===== 第三區塊子區塊：一起達成 / 分開達成 ===== */
+.fin-subsection {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1.5px dashed var(--border);
+}
+
+.fin-subsection-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.fin-subsection-desc {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.pool-input-row {
+  margin-bottom: 14px;
+}
+
+.pool-input-row .input-group {
+  max-width: 260px;
+}
+
+/* ===== 目標清單（第一、三區塊共用） ===== */
+.goal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.goal-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 22px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid var(--accent2);
+}
+
+.goal-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.goal-name-input {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-bottom: 1.5px dashed transparent;
+  background: transparent;
+  color: var(--text);
+  padding: 4px 2px;
+}
+
+.goal-name-input:focus {
+  outline: none;
+  border-bottom-color: var(--accent2);
+}
+
+.goal-name-readonly {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.goal-remove-btn {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(192, 57, 43, 0.1);
+  color: var(--red);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.goal-remove-btn:hover {
+  background: rgba(192, 57, 43, 0.2);
+}
+
+/* 使用實質報酬率 開關 */
+.real-rate-toggle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 10px 5px 8px;
+}
+
+.real-rate-toggle input {
+  accent-color: var(--accent2);
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.real-rate-toggle:has(input:checked) {
+  color: var(--accent2);
+  border-color: var(--accent2);
+  background: rgba(74, 127, 165, 0.08);
+  font-weight: 700;
+}
+
+.goal-input-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.goal-input-row.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.goal-input-row.goal-advanced {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.goal-advanced .input-group input::placeholder {
+  color: var(--muted);
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.goal-result {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+
+.goal-result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.goal-result-item span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.goal-result-item strong {
+  font-size: 14px;
+  font-family: 'DM Mono', monospace;
+  color: var(--text);
+}
+
+.goal-result-item.highlight strong {
+  color: var(--accent2);
+  font-size: 16px;
+}
+
+.goal-result-item.warn strong {
+  color: var(--red);
+}
+
+.goal-result-item.ok strong {
+  color: var(--green);
+}
+
+/* 第三區塊：計劃每月存入 */
+.goal-plan-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+
+.goal-outcome {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.goal-outcome.ok {
+  background: rgba(39, 174, 96, 0.08);
+  color: var(--green);
+}
+
+.goal-outcome.warn {
+  background: rgba(192, 57, 43, 0.07);
+  color: var(--red);
+}
+
+.goal-outcome-sub {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.add-goal-btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px;
+  border: 1.5px dashed var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.add-goal-btn:hover {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(74, 127, 165, 0.05);
+}
+
+/* ===== 資產清單（第二區塊） ===== */
+.asset-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.asset-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid var(--accent);
+}
+
+.asset-summary {
+  display: flex;
+  gap: 24px;
+  margin-top: 18px;
+  padding: 16px 20px;
+  background: var(--sidebar);
+  border-radius: 10px;
+}
+
+.asset-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.asset-summary-item span {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.asset-summary-item span .tip {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.asset-summary-item strong {
+  font-size: 18px;
+  font-family: 'DM Mono', monospace;
+  color: #fff;
+}
+
+.fin-asset-note {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+}
+
+/* ===== 逐年試算表下載 ===== */
+.fin-export-row {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 22px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  flex-wrap: wrap;
+}
+
+.fin-export-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+  min-width: 220px;
+}
+
+.export-btn {
+  flex-shrink: 0;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent2);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.export-btn:hover {
+  opacity: 0.88;
+}
+
+/* ===== 時間軸里程碑（動態產生） ===== */
+.finance-timeline .milestone {
+  padding-right: 64px;
+}
+
+.finance-timeline .milestone .ms-desc {
+  line-height: 1.6;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+  .fin-params-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .goal-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .pool-input-row .input-group {
+    max-width: none;
+  }
+
+  .goal-result.cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .goal-plan-row {
+    grid-template-columns: 1fr;
+  }
+
+  .goal-result {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .goal-card-header {
+    flex-wrap: wrap;
+  }
+
+  .asset-row {
+    grid-template-columns: 1fr 1fr auto;
+  }
+
+  .asset-summary {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fin-params-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .goal-card {
+    padding: 14px 16px;
+  }
+
+  .goal-result {
+    grid-template-columns: 1fr;
+  }
+
+  .asset-row {
+    grid-template-columns: 1fr;
+  }
+}
