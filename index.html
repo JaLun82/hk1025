@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg
+      xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em'
+      font-size='90'>🛡️</text></svg>"
+    />
+    <title>好命綸規劃</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/layout.css?v=20260907" />
+    <link rel="stylesheet" href="css/components.css?v=20260907" />
+    <link rel="stylesheet" href="css/retirement.css?v=20260907" />
+    <link rel="stylesheet" href="css/finance.css?v=20260907" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- ===== 標題列 ===== -->
+      <header class="main-title-bar">
+        <div class="title-logo">好命綸規劃</div>
+        <div class="title-divider"></div>
+        <h1 class="title-current" id="main-title">退休金缺口</h1>
+      </header>
+
+      <!-- ===== 主體 ===== -->
+      <div class="body-row">
+        <!-- 側邊欄導覽 -->
+        <nav class="sidebar">
+          <div
+            class="nav-item"
+            data-page="finance"
+            data-label="財務規劃"
+            onclick="navigate(this)"
+          >
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">財務規劃</span>
+          </div>
+          <div class="nav-divider"></div>
+
+          <div
+            class="nav-item active"
+            data-page="retirement"
+            data-label="退休金"
+            onclick="navigate(this)"
+          >
+            <span class="nav-icon">🏦</span>
+            <span class="nav-label">退休金</span>
+          </div>
+
+          <div class="nav-divider"></div>
+
+          <div
+            class="nav-item"
+            data-page="medical"
+            data-label="醫療缺口"
+            onclick="navigate(this)"
+          >
+            <span class="nav-icon">🏥</span>
+            <span class="nav-label">醫療缺口</span>
+          </div>
+
+          <div class="nav-divider"></div>
+
+          <div
+            class="nav-item"
+            data-page="life"
+            data-label="壽險保障"
+            onclick="navigate(this)"
+          >
+            <span class="nav-icon">🛡️</span>
+            <span class="nav-label">壽險保障</span>
+          </div>
+
+          <div class="nav-divider"></div>
+
+          <div
+            class="nav-item"
+            data-page="overview"
+            data-label="保單總覽"
+            onclick="navigate(this)"
+          >
+            <span class="nav-icon">📋</span>
+            <span class="nav-label">保單總覽</span>
+          </div>
+
+          <div class="nav-divider"></div>
+        </nav>
+
+        <!-- 主內容區 -->
+        <main class="main-panel">
+          <div id="page-container">
+            <div class="loading-state">載入中…</div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="js/retirement.js?v=20260907"></script>
+    <script src="js/pension2.js?v=20260907"></script>
+    <script src="js/finance.js?v=20260907"></script>
+    <script src="js/app.js?v=20260907"></script>
+  </body>
+</html>
